@@ -89,6 +89,8 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private boolean mIsLoadingPosts;
 
+    private int mLastHiddenIndex = -1;
+
     private final List<PostModel> mPosts = new ArrayList<>();
     private final List<PostModel> mHiddenPosts = new ArrayList<>();
     private final Map<Integer, String> mFeaturedImageUrls = new HashMap<>();
@@ -254,7 +256,9 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         } else if (holder instanceof PageViewHolder) {
             PageViewHolder pageHolder = (PageViewHolder) holder;
             if (StringUtils.isNotEmpty(post.getTitle())) {
-                pageHolder.txtTitle.setText(post.getTitle());
+                // Unescape HTML
+                String cleanPageTitle = StringEscapeUtils.unescapeHtml4(post.getTitle());
+                pageHolder.txtTitle.setText(cleanPageTitle);
             } else {
                 pageHolder.txtTitle.setText("(" + context.getResources().getText(R.string.untitled) + ")");
             }
@@ -539,6 +543,12 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         animOut.start();
     }
 
+    public void setPostList(@NonNull List<PostModel> postList) {
+        mPosts.clear();
+        mPosts.addAll(postList);
+        notifyDataSetChanged();
+    }
+
     public void loadPosts(LoadMode mode) {
         if (mIsLoadingPosts) {
             AppLog.d(AppLog.T.POSTS, "post adapter > already loading posts");
@@ -554,15 +564,15 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public void hidePost(PostModel post) {
         mHiddenPosts.add(post);
 
-        int position = PostUtils.indexOfPostInList(post, mPosts);
-        if (position > -1) {
-            mPosts.remove(position);
+        mLastHiddenIndex = PostUtils.indexOfPostInList(post, mPosts);
+        if (mLastHiddenIndex > -1) {
+            mPosts.remove(mLastHiddenIndex);
             if (mPosts.size() > 0) {
-                notifyItemRemoved(position);
+                notifyItemRemoved(mLastHiddenIndex);
 
                 //when page is removed update the next one in case we need to show a header
                 if (mIsPage) {
-                    notifyItemChanged(position);
+                    notifyItemChanged(mLastHiddenIndex);
                 }
             } else {
                 // we must call notifyDataSetChanged when the only post has been deleted - if we
@@ -575,8 +585,15 @@ public class PostsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     public void unhidePost(PostModel post) {
         if (mHiddenPosts.remove(post)) {
-            loadPosts(LoadMode.IF_CHANGED);
+            if (mLastHiddenIndex > 0 && mLastHiddenIndex < mPosts.size() + 1) {
+                mPosts.add(mLastHiddenIndex, post);
+                notifyItemInserted(mLastHiddenIndex);
+            } else {
+                mPosts.add(post);
+                notifyDataSetChanged();
+            }
         }
+        mLastHiddenIndex = -1;
     }
 
     public interface OnLoadMoreListener {
