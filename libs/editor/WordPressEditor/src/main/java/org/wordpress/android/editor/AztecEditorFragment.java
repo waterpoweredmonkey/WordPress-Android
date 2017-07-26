@@ -60,6 +60,7 @@ import org.wordpress.aztec.ITextFormat;
 import org.wordpress.aztec.plugins.wpcomments.CommentsTextFormat;
 import org.wordpress.aztec.plugins.wpcomments.WordPressCommentsPlugin;
 import org.wordpress.aztec.source.SourceViewEditText;
+import org.wordpress.aztec.spans.AztecDynamicImageSpan;
 import org.wordpress.aztec.toolbar.AztecToolbar;
 import org.wordpress.aztec.toolbar.IAztecToolbarClickListener;
 import org.wordpress.aztec.plugins.wpcomments.toolbar.MoreToolbarButton;
@@ -592,16 +593,21 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
 
                         // Show failed placeholder.
                         ToastUtils.showToast(getActivity(), R.string.error_media_load);
-                        Drawable drawable = getResources().getDrawable(R.drawable.ic_image_failed_grey_a_40_48dp);
                         AztecAttributes attributes = new AztecAttributes();
                         attributes.setValue(ATTR_SRC, mediaUrl);
                         setAttributeValuesIfNotDefault(attributes, mediaFile);
-                        content.insertImage(drawable, attributes);
+                        content.insertImage(new AztecDynamicImageSpan.IImageProvider() {
+                            @Override
+                            public void requestImage(AztecDynamicImageSpan aztecDynamicImageSpan) {
+                                Drawable drawable = getResources().getDrawable(R.drawable.ic_image_failed_grey_a_40_48dp);
+                                aztecDynamicImageSpan.setDrawable(drawable);
+                            }
+                        }, attributes);
                     }
 
                     @Override
                     public void onResponse(ImageLoader.ImageContainer container, boolean isImmediate) {
-                        Bitmap downloadedBitmap = container.getBitmap();
+                        final Bitmap downloadedBitmap = container.getBitmap();
 
                         if (downloadedBitmap == null || !isAdded()) {
                             // No bitmap downloaded from server or the fragment is detached
@@ -617,13 +623,23 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
                         if (downloadedBitmap.getHeight() < minimumDimension || downloadedBitmap.getWidth() < minimumDimension) {
                             // Bitmap is too small.  Show image placeholder.
                             ToastUtils.showToast(getActivity(), R.string.error_media_small);
-                            Drawable drawable = getResources().getDrawable(R.drawable.ic_image_loading_grey_a_40_48dp);
-                            content.insertImage(drawable, attributes);
+                            content.insertImage(new AztecDynamicImageSpan.IImageProvider() {
+                                @Override
+                                public void requestImage(AztecDynamicImageSpan aztecDynamicImageSpan) {
+                                    Drawable drawable = getResources().getDrawable(R.drawable.ic_image_loading_grey_a_40_48dp);
+                                    aztecDynamicImageSpan.setDrawable(drawable);
+                                }
+                            }, attributes);
                             return;
                         }
 
-                        Bitmap resizedBitmap = ImageUtils.getScaledBitmapAtLongestSide(downloadedBitmap, DisplayUtils.getDisplayPixelWidth(getActivity()));
-                        content.insertImage(new BitmapDrawable(getResources(), resizedBitmap), attributes);
+                        content.insertImage(new AztecDynamicImageSpan.IImageProvider() {
+                            @Override
+                            public void requestImage(AztecDynamicImageSpan aztecDynamicImageSpan) {
+                                Bitmap resizedBitmap = ImageUtils.getScaledBitmapAtLongestSide(downloadedBitmap, DisplayUtils.getDisplayPixelWidth(getActivity()));
+                                aztecDynamicImageSpan.setDrawable(new BitmapDrawable(getResources(), resizedBitmap));
+                            }
+                        }, attributes);
                     }
                 }, 0, 0);
             }
@@ -644,17 +660,28 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
                 addDefaultSizeClassIfMissing(attrs);
 
                 // load a scaled version of the image to prevent OOM exception
-                int maxWidth = DisplayUtils.getDisplayPixelWidth(getActivity());
+                final int maxWidth = DisplayUtils.getDisplayPixelWidth(getActivity());
                 Bitmap bitmapToShow = ImageUtils.getWPImageSpanThumbnailFromFilePath(getActivity(), safeMediaUrl, maxWidth);
 
                 if (bitmapToShow != null) {
-                    content.insertImage(new BitmapDrawable(getResources(), bitmapToShow), attrs);
+                    content.insertImage(new AztecDynamicImageSpan.IImageProvider() {
+                        @Override
+                        public void requestImage(AztecDynamicImageSpan aztecDynamicImageSpan) {
+                            aztecDynamicImageSpan.setDrawable(new BitmapDrawable(getResources()));
+                        }
+                    }, attrs);
                 } else {
                     // Failed to retrieve bitmap.  Show failed placeholder.
                     ToastUtils.showToast(getActivity(), R.string.error_media_load);
-                    Drawable drawable = getResources().getDrawable(R.drawable.ic_image_failed_grey_a_40_48dp);
-                    drawable.setBounds(0, 0, maxWidth, maxWidth);
-                    content.insertImage(drawable, attrs);
+
+                    content.insertImage(new AztecDynamicImageSpan.IImageProvider() {
+                        @Override
+                        public void requestImage(AztecDynamicImageSpan aztecDynamicImageSpan) {
+                            Drawable drawable = getResources().getDrawable(R.drawable.ic_image_failed_grey_a_40_48dp);
+                            drawable.setBounds(0, 0, maxWidth, maxWidth);
+                            aztecDynamicImageSpan.setDrawable(drawable);
+                        }
+                    }, attrs);
                 }
 
                 // set intermediate shade overlay
