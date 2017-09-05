@@ -69,6 +69,7 @@ import org.wordpress.aztec.plugins.wpcomments.CommentsTextFormat;
 import org.wordpress.aztec.plugins.wpcomments.WordPressCommentsPlugin;
 import org.wordpress.aztec.plugins.wpcomments.toolbar.MoreToolbarButton;
 import org.wordpress.aztec.source.SourceViewEditText;
+import org.wordpress.aztec.spans.AztecDynamicImageSpan;
 import org.wordpress.aztec.spans.AztecMediaSpan;
 import org.wordpress.aztec.spans.IAztecAttributedSpan;
 import org.wordpress.aztec.toolbar.AztecToolbar;
@@ -686,10 +687,20 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
             setAttributeValuesIfNotDefault(attributes, mediaFile);
             if(mediaFile.isVideo()) {
                 addVideoUploadingClassIfMissing(attributes);
-                content.insertVideo(placeholder, attributes);
+                content.insertVideo(new AztecDynamicImageSpan.IImageProvider() {
+                    @Override
+                    public void requestImage(AztecDynamicImageSpan span) {
+                        span.setDrawable(placeholder);
+                    }
+                }, attributes);
                 overlayVideoIcon(0, new MediaPredicate(mediaUrl, ATTR_SRC));
             } else {
-                content.insertImage(placeholder, attributes);
+                content.insertImage(new AztecDynamicImageSpan.IImageProvider() {
+                    @Override
+                    public void requestImage(AztecDynamicImageSpan span) {
+                        span.setDrawable(placeholder);
+                    }
+                }, attributes);
             }
 
             final String posterURL = mediaFile.isVideo() ? Utils.escapeQuotes(StringUtils.notNullStr(mediaFile.getThumbnailURL())) : mediaUrl;
@@ -771,22 +782,38 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
 
             addDefaultSizeClassIfMissing(attrs);
 
-            Bitmap bitmapToShow = ImageUtils.getWPImageSpanThumbnailFromFilePath(getActivity(), safeMediaPreviewUrl, maxWidth);
+            final Bitmap bitmapToShow = ImageUtils.getWPImageSpanThumbnailFromFilePath(getActivity(), safeMediaPreviewUrl, maxWidth);
             MediaPredicate localMediaIdPredicate = MediaPredicate.getLocalMediaIdPredicate(localMediaId);
 
             if (bitmapToShow != null) {
                 if(mediaFile.isVideo()) {
                     addVideoUploadingClassIfMissing(attrs);
-                    content.insertVideo(new BitmapDrawable(getResources(), bitmapToShow), attrs);
+
+                    content.insertVideo(new AztecDynamicImageSpan.IImageProvider() {
+                        @Override
+                        public void requestImage(AztecDynamicImageSpan span) {
+                            span.setDrawable(new BitmapDrawable(getResources(), bitmapToShow));
+                        }
+                    }, attrs);
                 } else {
-                    content.insertImage(new BitmapDrawable(getResources(), bitmapToShow), attrs);
+                    content.insertImage(new AztecDynamicImageSpan.IImageProvider() {
+                        @Override
+                        public void requestImage(AztecDynamicImageSpan span) {
+                            span.setDrawable(new BitmapDrawable(getResources(), bitmapToShow));
+                        }
+                    }, attrs);
                 }
             } else {
                 // Failed to retrieve bitmap.  Show failed placeholder.
                 ToastUtils.showToast(getActivity(), R.string.error_media_load);
-                Drawable drawable = getResources().getDrawable(R.drawable.ic_image_failed_grey_a_40_48dp);
+                final Drawable drawable = getResources().getDrawable(R.drawable.ic_image_failed_grey_a_40_48dp);
                 drawable.setBounds(0, 0, maxWidth, maxWidth);
-                content.insertImage(drawable, attrs);
+                content.insertImage(new AztecDynamicImageSpan.IImageProvider() {
+                    @Override
+                    public void requestImage(AztecDynamicImageSpan span) {
+                        span.setDrawable(drawable);
+                    }
+                }, attrs);
             }
 
             // set intermediate shade overlay
