@@ -782,7 +782,7 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
 
             addDefaultSizeClassIfMissing(attrs);
 
-            final Bitmap bitmapToShow = ImageUtils.getWPImageSpanThumbnailFromFilePath(getActivity(), safeMediaPreviewUrl, maxWidth);
+            Bitmap bitmapToShow = ImageUtils.getWPImageSpanThumbnailFromFilePath(getActivity(), safeMediaPreviewUrl, maxWidth);
             MediaPredicate localMediaIdPredicate = MediaPredicate.getLocalMediaIdPredicate(localMediaId);
 
             if (bitmapToShow != null) {
@@ -792,14 +792,16 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
                     content.insertVideo(new AztecDynamicImageSpan.IImageProvider() {
                         @Override
                         public void requestImage(AztecDynamicImageSpan span) {
-                            span.setDrawable(new BitmapDrawable(getResources(), bitmapToShow));
+                            Bitmap bitmap = ImageUtils.getWPImageSpanThumbnailFromFilePath(getActivity(), safeMediaPreviewUrl, maxWidth);
+                            span.setDrawable(new BitmapDrawable(getResources(), bitmap));
                         }
                     }, attrs);
                 } else {
                     content.insertImage(new AztecDynamicImageSpan.IImageProvider() {
                         @Override
                         public void requestImage(AztecDynamicImageSpan span) {
-                            span.setDrawable(new BitmapDrawable(getResources(), bitmapToShow));
+                            Bitmap bitmap = ImageUtils.getWPImageSpanThumbnailFromFilePath(getActivity(), safeMediaPreviewUrl, maxWidth);
+                            span.setDrawable(new BitmapDrawable(getResources(), bitmap));
                         }
                     }, attrs);
                 }
