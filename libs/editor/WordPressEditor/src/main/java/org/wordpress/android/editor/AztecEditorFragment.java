@@ -667,30 +667,106 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
         }
     }
 
+    private void showPlaceholderAndDownloadNetworkPicture(final AztecDynamicImageSpan span, final MediaFile mediaFile, final String mediaUrl,
+                                                          final ImageLoader imageLoader, final int maxWidth) {
+        // We're download the image/video from the network. Show the placeholder immediately since it could require time.
+        final Drawable placeholder;
+        if(mediaFile.isVideo()) {
+            placeholder = getResources().getDrawable(R.drawable.ic_gridicons_video_camera);
+        } else {
+            placeholder = getResources().getDrawable(R.drawable.ic_gridicons_image);
+        }
+        placeholder.setBounds(0, 0, DEFAULT_MEDIA_PLACEHOLDER_DIMENSION_DP, DEFAULT_MEDIA_PLACEHOLDER_DIMENSION_DP);
+        final String posterURL = mediaFile.isVideo() ? Utils.escapeQuotes(StringUtils.notNullStr(mediaFile.getThumbnailURL())) : mediaUrl;
+
+        if (span instanceof AztecMediaSpan) {
+            ((AztecMediaSpan) span).setDrawable(placeholder, true);
+        } else {
+            span.setDrawable(placeholder);
+        }
+
+        imageLoader.get(posterURL, new ImageLoader.ImageListener() {
+
+            private void replaceDrawable(Drawable newDrawable){
+                AztecMediaSpan[] imageOrVideoSpans = content.getText().getSpans(0, content.getText().length(), AztecMediaSpan.class);
+                for (AztecMediaSpan currentClass: imageOrVideoSpans) {
+                    if (currentClass.getAttributes().hasAttribute(ATTR_SRC) &&
+                            mediaUrl.equals(currentClass.getAttributes().getValue(ATTR_SRC))) {
+                        currentClass.setDrawable(newDrawable);
+                    }
+                }
+                span.setDrawable(newDrawable);
+                content.refreshText();
+            }
+
+            private void showErrorPlaceholder() {
+                // Show failed placeholder.
+                ToastUtils.showToast(getActivity(), R.string.error_media_load);
+                Drawable drawable = getResources().getDrawable(R.drawable.ic_image_failed_grey_a_40_48dp);
+                replaceDrawable(drawable);
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (!isAdded()) {
+                    // the fragment is detached
+                    return;
+                }
+                showErrorPlaceholder();
+            }
+
+            @Override
+            public void onResponse(ImageLoader.ImageContainer container, boolean isImmediate) {
+                if (!isAdded()) {
+                    // the fragment is detached
+                    return;
+                }
+                Bitmap downloadedBitmap = container.getBitmap();
+                if (downloadedBitmap == null) {
+                    if (isImmediate) {
+                        // Bitmap is null but isImmediate is true (as soon as the request starts).
+                        return;
+                    }
+                    showErrorPlaceholder();
+                    return;
+                }
+
+                AztecAttributes attributes = new AztecAttributes();
+                attributes.setValue(ATTR_SRC, mediaUrl);
+                setAttributeValuesIfNotDefault(attributes, mediaFile);
+
+                int minimumDimension = DisplayUtils.dpToPx(getActivity(), MIN_BITMAP_DIMENSION_DP);
+
+                if (downloadedBitmap.getHeight() < minimumDimension || downloadedBitmap.getWidth() < minimumDimension) {
+                    // Bitmap is too small.  Show image placeholder.
+                    ToastUtils.showToast(getActivity(), R.string.error_media_small);
+                    Drawable drawable = getResources().getDrawable(R.drawable.ic_image_loading_grey_a_40_48dp);
+                    replaceDrawable(drawable);
+                    return;
+                }
+
+                Bitmap resizedBitmap = ImageUtils.getScaledBitmapAtLongestSide(downloadedBitmap, maxWidth);
+                replaceDrawable(new BitmapDrawable(getResources(), resizedBitmap));
+            }
+        }, maxWidth, 0);
+    }
+
     @Override
-    public void appendMediaFile(final MediaFile mediaFile, final String mediaUrl, ImageLoader imageLoader) {
+    public void appendMediaFile(final MediaFile mediaFile, final String mediaUrl, final ImageLoader imageLoader) {
         // load a scaled version of the image to prevent OOM exception
         final int maxWidth = ImageUtils.getMaximumThumbnailWidthForEditor(getActivity());
 
         if (URLUtil.isNetworkUrl(mediaUrl)) {
-            // We're download the image/video from the network. Show the placeholder immediately since it could require time.
-            final Drawable placeholder;
-            if(mediaFile.isVideo()) {
-                placeholder = getResources().getDrawable(R.drawable.ic_gridicons_video_camera);
-            } else {
-                placeholder = getResources().getDrawable(R.drawable.ic_gridicons_image);
-            }
-            placeholder.setBounds(0, 0, DEFAULT_MEDIA_PLACEHOLDER_DIMENSION_DP, DEFAULT_MEDIA_PLACEHOLDER_DIMENSION_DP);
-
             AztecAttributes attributes = new AztecAttributes();
             attributes.setValue(ATTR_SRC, mediaUrl);
             setAttributeValuesIfNotDefault(attributes, mediaFile);
+
             if(mediaFile.isVideo()) {
                 addVideoUploadingClassIfMissing(attributes);
                 content.insertVideo(new AztecDynamicImageSpan.IImageProvider() {
                     @Override
                     public void requestImage(AztecDynamicImageSpan span) {
-                        span.setDrawable(placeholder);
+                        showPlaceholderAndDownloadNetworkPicture(span, mediaFile, mediaUrl, imageLoader, maxWidth);
                     }
                 }, attributes);
                 overlayVideoIcon(0, new MediaPredicate(mediaUrl, ATTR_SRC));
@@ -698,76 +774,10 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
                 content.insertImage(new AztecDynamicImageSpan.IImageProvider() {
                     @Override
                     public void requestImage(AztecDynamicImageSpan span) {
-                        span.setDrawable(placeholder);
+                        showPlaceholderAndDownloadNetworkPicture(span, mediaFile, mediaUrl, imageLoader, maxWidth);
                     }
                 }, attributes);
             }
-
-            final String posterURL = mediaFile.isVideo() ? Utils.escapeQuotes(StringUtils.notNullStr(mediaFile.getThumbnailURL())) : mediaUrl;
-            imageLoader.get(posterURL, new ImageLoader.ImageListener() {
-
-                private void replaceDrawable(Drawable newDrawable){
-                    AztecMediaSpan[] imageOrVideoSpans = content.getText().getSpans(0, content.getText().length(), AztecMediaSpan.class);
-                    for (AztecMediaSpan currentClass: imageOrVideoSpans) {
-                        if (currentClass.getAttributes().hasAttribute(ATTR_SRC) &&
-                                mediaUrl.equals(currentClass.getAttributes().getValue(ATTR_SRC))) {
-                            currentClass.setDrawable(newDrawable);
-                        }
-                    }
-                    content.refreshText();
-                }
-
-                private void showErrorPlaceholder() {
-                    // Show failed placeholder.
-                    ToastUtils.showToast(getActivity(), R.string.error_media_load);
-                    Drawable drawable = getResources().getDrawable(R.drawable.ic_image_failed_grey_a_40_48dp);
-                    replaceDrawable(drawable);
-                }
-
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    if (!isAdded()) {
-                        // the fragment is detached
-                        return;
-                    }
-                    showErrorPlaceholder();
-                }
-
-                @Override
-                public void onResponse(ImageLoader.ImageContainer container, boolean isImmediate) {
-                    if (!isAdded()) {
-                        // the fragment is detached
-                        return;
-                    }
-                    Bitmap downloadedBitmap = container.getBitmap();
-                    if (downloadedBitmap == null) {
-                        if (isImmediate) {
-                            // Bitmap is null but isImmediate is true (as soon as the request starts).
-                            return;
-                        }
-                        showErrorPlaceholder();
-                        return;
-                    }
-
-                    AztecAttributes attributes = new AztecAttributes();
-                    attributes.setValue(ATTR_SRC, mediaUrl);
-                    setAttributeValuesIfNotDefault(attributes, mediaFile);
-
-                    int minimumDimension = DisplayUtils.dpToPx(getActivity(), MIN_BITMAP_DIMENSION_DP);
-
-                    if (downloadedBitmap.getHeight() < minimumDimension || downloadedBitmap.getWidth() < minimumDimension) {
-                        // Bitmap is too small.  Show image placeholder.
-                        ToastUtils.showToast(getActivity(), R.string.error_media_small);
-                        Drawable drawable = getResources().getDrawable(R.drawable.ic_image_loading_grey_a_40_48dp);
-                        replaceDrawable(drawable);
-                        return;
-                    }
-
-                    Bitmap resizedBitmap = ImageUtils.getScaledBitmapAtLongestSide(downloadedBitmap, maxWidth);
-                    replaceDrawable(new BitmapDrawable(getResources(), resizedBitmap));
-                }
-            }, maxWidth, 0);
-
             mActionStartedAt = System.currentTimeMillis();
         } else {
             String localMediaId = String.valueOf(mediaFile.getId());
