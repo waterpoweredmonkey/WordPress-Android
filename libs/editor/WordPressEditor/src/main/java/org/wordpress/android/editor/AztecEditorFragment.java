@@ -667,9 +667,35 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
         }
     }
 
+    private void replaceDrawable(final AztecDynamicImageSpan span, final String mediaUrl, final Drawable newDrawable) {
+        AztecMediaSpan[] imageOrVideoSpans = content.getText().getSpans(0, content.getText().length(), AztecMediaSpan.class);
+        for (AztecMediaSpan currentClass: imageOrVideoSpans) {
+            if (currentClass.getAttributes().hasAttribute(ATTR_SRC) &&
+                    mediaUrl.equals(currentClass.getAttributes().getValue(ATTR_SRC))) {
+                currentClass.setDrawable(newDrawable);
+            }
+        }
+        span.setDrawable(newDrawable);
+        content.refreshText();
+    }
+
     private void showPlaceholderAndDownloadNetworkPicture(final AztecDynamicImageSpan span, final MediaFile mediaFile, final String mediaUrl,
                                                           final ImageLoader imageLoader, final int maxWidth) {
-        // We're download the image/video from the network. Show the placeholder immediately since it could require time.
+
+        final String thumbURL = mediaFile.isVideo() ? Utils.escapeQuotes(StringUtils.notNullStr(mediaFile.getThumbnailURL())) : mediaUrl;
+        final String cacheKey = thumbURL + maxWidth;
+
+        // We're downloading the image/video from the network. It could require time, so:
+        // 1. Check if the picture is already in our bitmap cache
+        // 2a. If yes, show the picture immediately
+        // 2b. Otherwise, show the placeholder and download it from the network
+        Bitmap bitmap = getBitmapFromCache(cacheKey);
+        if (bitmap != null) {
+            Drawable d = new BitmapDrawable(getResources(), bitmap);
+            replaceDrawable(span, mediaUrl, d);
+            return;
+        }
+
         final Drawable placeholder;
         if(mediaFile.isVideo()) {
             placeholder = getResources().getDrawable(R.drawable.ic_gridicons_video_camera);
@@ -677,7 +703,6 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
             placeholder = getResources().getDrawable(R.drawable.ic_gridicons_image);
         }
         placeholder.setBounds(0, 0, DEFAULT_MEDIA_PLACEHOLDER_DIMENSION_DP, DEFAULT_MEDIA_PLACEHOLDER_DIMENSION_DP);
-        final String posterURL = mediaFile.isVideo() ? Utils.escapeQuotes(StringUtils.notNullStr(mediaFile.getThumbnailURL())) : mediaUrl;
 
         if (span instanceof AztecMediaSpan) {
             ((AztecMediaSpan) span).setDrawable(placeholder, true);
@@ -685,25 +710,13 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
             span.setDrawable(placeholder);
         }
 
-        imageLoader.get(posterURL, new ImageLoader.ImageListener() {
-
-            private void replaceDrawable(Drawable newDrawable){
-                AztecMediaSpan[] imageOrVideoSpans = content.getText().getSpans(0, content.getText().length(), AztecMediaSpan.class);
-                for (AztecMediaSpan currentClass: imageOrVideoSpans) {
-                    if (currentClass.getAttributes().hasAttribute(ATTR_SRC) &&
-                            mediaUrl.equals(currentClass.getAttributes().getValue(ATTR_SRC))) {
-                        currentClass.setDrawable(newDrawable);
-                    }
-                }
-                span.setDrawable(newDrawable);
-                content.refreshText();
-            }
+        imageLoader.get(thumbURL, new ImageLoader.ImageListener() {
 
             private void showErrorPlaceholder() {
                 // Show failed placeholder.
                 ToastUtils.showToast(getActivity(), R.string.error_media_load);
                 Drawable drawable = getResources().getDrawable(R.drawable.ic_image_failed_grey_a_40_48dp);
-                replaceDrawable(drawable);
+                replaceDrawable(span, mediaUrl, drawable);
             }
 
             @Override
@@ -741,12 +754,13 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
                     // Bitmap is too small.  Show image placeholder.
                     ToastUtils.showToast(getActivity(), R.string.error_media_small);
                     Drawable drawable = getResources().getDrawable(R.drawable.ic_image_loading_grey_a_40_48dp);
-                    replaceDrawable(drawable);
+                    replaceDrawable(span, mediaUrl, drawable);
                     return;
                 }
 
                 Bitmap resizedBitmap = ImageUtils.getScaledBitmapAtLongestSide(downloadedBitmap, maxWidth);
-                replaceDrawable(new BitmapDrawable(getResources(), resizedBitmap));
+                replaceDrawable(span, mediaUrl, new BitmapDrawable(getResources(), resizedBitmap));
+                putBitmapInCache(cacheKey, resizedBitmap);
             }
         }, maxWidth, 0);
     }

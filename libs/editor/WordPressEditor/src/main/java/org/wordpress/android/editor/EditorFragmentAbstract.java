@@ -2,6 +2,7 @@ package org.wordpress.android.editor;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Spanned;
@@ -85,6 +86,7 @@ public abstract class EditorFragmentAbstract extends Fragment {
     protected boolean mDebugModeEnabled;
 
     protected HashMap<String, String> mCustomHttpHeaders;
+    protected ImageLoader.ImageCache mBitmapCache;
 
     @Override
     public void onAttach(Activity activity) {
@@ -222,5 +224,28 @@ public abstract class EditorFragmentAbstract extends Fragment {
         READ_MORE_BUTTON_TAPPED,
         STRIKETHROUGH_BUTTON_TAPPED,
         UNDERLINE_BUTTON_TAPPED
+    }
+
+    public void setBitmapCache(ImageLoader.ImageCache cache) {
+        this.mBitmapCache = cache;
+    }
+
+    public ImageLoader.ImageCache getBitmapCache() {
+        return mBitmapCache;
+    }
+
+    protected Bitmap getBitmapFromCache(String key) {
+        if (mBitmapCache == null) {
+            return null;
+        }
+        return mBitmapCache.getBitmap(key);
+    }
+
+    protected boolean putBitmapInCache(String key, Bitmap bitmap) {
+        if (mBitmapCache == null) {
+            return false;
+        }
+        mBitmapCache.putBitmap(key, bitmap);
+        return true;
     }
 }

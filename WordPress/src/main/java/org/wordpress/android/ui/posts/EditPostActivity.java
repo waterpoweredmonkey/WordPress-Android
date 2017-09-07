@@ -1421,6 +1421,7 @@ public class EditPostActivity extends AppCompatActivity implements
                 case 0:
                     mEditorFragment = (EditorFragmentAbstract) fragment;
                     mEditorFragment.setImageLoader(mImageLoader);
+                    mEditorFragment.setBitmapCache(WordPress.getBitmapCache());
 
                     if (mEditorFragment instanceof EditorMediaUploadListener) {
                         mEditorMediaUploadListener = (EditorMediaUploadListener) mEditorFragment;
