@@ -807,27 +807,28 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
             addDefaultSizeClassIfMissing(attrs);
 
             Bitmap bitmapToShow = ImageUtils.getWPImageSpanThumbnailFromFilePath(getActivity(), safeMediaPreviewUrl, maxWidth);
+            final String cacheKey = safeMediaPreviewUrl + maxWidth;
+            putBitmapInCache(cacheKey, bitmapToShow);
             MediaPredicate localMediaIdPredicate = MediaPredicate.getLocalMediaIdPredicate(localMediaId);
 
             if (bitmapToShow != null) {
+                AztecDynamicImageSpan.IImageProvider imageProvider = new AztecDynamicImageSpan.IImageProvider() {
+                    @Override
+                    public void requestImage(AztecDynamicImageSpan span) {
+                        Bitmap bitmap = getBitmapFromCache(cacheKey);
+                        if (bitmap == null) {
+                            bitmap = ImageUtils.getWPImageSpanThumbnailFromFilePath(getActivity(), safeMediaPreviewUrl, maxWidth);
+                            putBitmapInCache(cacheKey, bitmap);
+                        }
+                        span.setDrawable(new BitmapDrawable(getResources(), bitmap));
+                    }
+                };
+
                 if(mediaFile.isVideo()) {
                     addVideoUploadingClassIfMissing(attrs);
-
-                    content.insertVideo(new AztecDynamicImageSpan.IImageProvider() {
-                        @Override
-                        public void requestImage(AztecDynamicImageSpan span) {
-                            Bitmap bitmap = ImageUtils.getWPImageSpanThumbnailFromFilePath(getActivity(), safeMediaPreviewUrl, maxWidth);
-                            span.setDrawable(new BitmapDrawable(getResources(), bitmap));
-                        }
-                    }, attrs);
+                    content.insertVideo(imageProvider, attrs);
                 } else {
-                    content.insertImage(new AztecDynamicImageSpan.IImageProvider() {
-                        @Override
-                        public void requestImage(AztecDynamicImageSpan span) {
-                            Bitmap bitmap = ImageUtils.getWPImageSpanThumbnailFromFilePath(getActivity(), safeMediaPreviewUrl, maxWidth);
-                            span.setDrawable(new BitmapDrawable(getResources(), bitmap));
-                        }
-                    }, attrs);
+                    content.insertImage(imageProvider, attrs);
                 }
             } else {
                 // Failed to retrieve bitmap.  Show failed placeholder.
@@ -854,7 +855,6 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
             content.updateElementAttributes(localMediaIdPredicate, attrs);
 
             content.resetAttributedMediaSpan(localMediaIdPredicate);
-
         }
     }
 
