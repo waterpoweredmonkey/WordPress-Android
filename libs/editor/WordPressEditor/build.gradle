@@ -50,7 +50,7 @@ dependencies {
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'org.apache.commons:commons-lang3:3.5'
-    compile 'org.wordpress:utils:1.16.0'
+    compile 'org.wordpress:utils:1.17.1'
 
     compile 'com.github.wordpress-mobile.AztecEditor-Android:aztec:issue~420-oom-errors-with-several-pictures-SNAPSHOT'
     compile 'com.github.wordpress-mobile.AztecEditor-Android:wordpress-comments:issue~420-oom-errors-with-several-pictures-SNAPSHOT'
