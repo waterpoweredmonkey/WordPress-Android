@@ -65,6 +65,7 @@ import org.wordpress.aztec.ITextFormat;
 import org.wordpress.aztec.plugins.IAztecPlugin;
 import org.wordpress.aztec.plugins.shortcodes.AudioShortcodePlugin;
 import org.wordpress.aztec.plugins.shortcodes.CaptionShortcodePlugin;
+import org.wordpress.aztec.plugins.shortcodes.extensions.CaptionExtensionsKt;
 import org.wordpress.aztec.plugins.shortcodes.VideoShortcodePlugin;
 import org.wordpress.aztec.plugins.shortcodes.handlers.CaptionHandler;
 import org.wordpress.aztec.plugins.wpcomments.CommentsTextFormat;
@@ -239,7 +240,7 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
                 .setOnMediaDeletedListener(this)
                 .addPlugin(new WordPressCommentsPlugin(content))
                 .addPlugin(new MoreToolbarButton(content))
-                .addPlugin(new CaptionShortcodePlugin())
+                .addPlugin(new CaptionShortcodePlugin(content))
                 .addPlugin(new VideoShortcodePlugin())
                 .addPlugin(new AudioShortcodePlugin());
 
@@ -1417,6 +1418,9 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
                     if (authHeader.length() > 0) {
                         meta.put(ATTR_SRC, UrlUtils.makeHttps(imageSrc));
                     }
+
+                    String caption = CaptionExtensionsKt.getImageCaption(content, mTappedMediaPredicate);
+                    meta.put(ATTR_CAPTION, caption);
                 } catch (JSONException e) {
                     AppLog.e(AppLog.T.EDITOR, "Could not retrieve image url from JSON metadata");
                 }
@@ -1448,9 +1452,6 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
         if (requestCode == ImageSettingsDialogFragment.IMAGE_SETTINGS_DIALOG_REQUEST_CODE) {
             if (mTappedMediaPredicate != null) {
                 AztecAttributes attributes = content.getElementAttributes(mTappedMediaPredicate);
-                attributes.removeAttribute(TEMP_IMAGE_ID);
-
-                content.updateElementAttributes(mTappedMediaPredicate, attributes);
 
                 if (data == null || data.getExtras() == null) {
                     return;
@@ -1499,9 +1500,8 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
                     attributesWithClass.addClass(ATTR_IMAGE_WP_DASH + JSONUtils.getString(meta, ATTR_ID_ATTACHMENT));
                 }
 
-//                TODO: Add shortcode support to allow captions.
-//                https://github.com/wordpress-mobile/AztecEditor-Android/issues/17
-//                String caption = JSONUtils.getString(meta, ATTR_CAPTION);
+                String caption = JSONUtils.getString(meta, ATTR_CAPTION);
+                CaptionExtensionsKt.setImageCaption(content, mTappedMediaPredicate, caption);
 
 //                TODO: Fix issue with image inside link.
 //                https://github.com/wordpress-mobile/AztecEditor-Android/issues/196
@@ -1522,6 +1522,9 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
                         }
                     }
                 }
+
+                attributes.removeAttribute(TEMP_IMAGE_ID);
+                content.updateElementAttributes(mTappedMediaPredicate, attributes);
 
                 mTappedMediaPredicate = null;
             }
@@ -1786,7 +1789,7 @@ public class AztecEditorFragment extends EditorFragmentAbstract implements
 
     private static AztecParser getAztecParserWithPlugins() {
         List<IAztecPlugin> plugins = new ArrayList<>();
-        plugins.add(new CaptionShortcodePlugin());
+        plugins.add(new CaptionShortcodePlugin(null));
         plugins.add(new VideoShortcodePlugin());
         plugins.add(new AudioShortcodePlugin());
         return new AztecParser(plugins);
