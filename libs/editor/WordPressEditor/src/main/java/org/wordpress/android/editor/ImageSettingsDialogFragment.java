@@ -205,25 +205,25 @@ public class ImageSettingsDialogFragment extends DialogFragment {
             }
 
             // TODO: Unsupported in Aztec - remove once caption, alignment & link support added
-            if (bundle.getBoolean(EXTRA_ENABLED_AZTEC)) {
-                mCaptionText.setVisibility(View.GONE);
-                View label = view.findViewById(R.id.image_caption_label);
-                if (label != null) {
-                    label.setVisibility(View.GONE);
-                }
-
-                mLinkTo.setVisibility(View.GONE);
-                label = view.findViewById(R.id.image_link_to_label);
-                if (label != null) {
-                    label.setVisibility(View.GONE);
-                }
-
-                mAlignmentSpinner.setVisibility(View.GONE);
-                label = view.findViewById(R.id.alignment_spinner_label);
-                if (label != null) {
-                    label.setVisibility(View.GONE);
-                }
-            }
+//            if (bundle.getBoolean(EXTRA_ENABLED_AZTEC)) {
+//                mCaptionText.setVisibility(View.GONE);
+//                View label = view.findViewById(R.id.image_caption_label);
+//                if (label != null) {
+//                    label.setVisibility(View.GONE);
+//                }
+//
+//                mLinkTo.setVisibility(View.GONE);
+//                label = view.findViewById(R.id.image_link_to_label);
+//                if (label != null) {
+//                    label.setVisibility(View.GONE);
+//                }
+//
+//                mAlignmentSpinner.setVisibility(View.GONE);
+//                label = view.findViewById(R.id.alignment_spinner_label);
+//                if (label != null) {
+//                    label.setVisibility(View.GONE);
+//                }
+//            }
         }
 
 
