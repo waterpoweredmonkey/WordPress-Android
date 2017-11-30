@@ -116,7 +116,7 @@ function require_imagemagick {
 }
 
 function require_sdk {
-  if [ -z "$ANDROID_SDK_DIR" ]; then
+  if [ -z "$ANDROID_SDK" ]; then
     require_dirs
 
     if [ ! -d "$WORKING_DIR/sdk/tools" ]; then
@@ -131,12 +131,12 @@ function require_sdk {
     fi
 
     echo Setting up SDK...
-    export ANDROID_SDK_DIR="$WORKING_DIR/sdk"
+    export ANDROID_SDK="$WORKING_DIR/sdk"
     export PATH=$PATH:"$WORKING_DIR/sdk/tools":"$WORKING_DIR/sdk/tools/bin":"$WORKING_DIR/sdk/platform-tools/"
     echo Done
   fi
 
-  export PATH=$PATH:$ANDROID_SDK_DIR/tools:$ANDROID_SDK_DIR/tools/bin
+  export PATH=$PATH:$ANDROID_SDK/tools:$ANDROID_SDK/tools/bin
 }
 
 function require_emu {
@@ -145,7 +145,7 @@ function require_emu {
 
   if [ $avdmissing = 1 ]; then
     echo Creating AVD
-    echo no | avdmanager create avd -n $AVD -k "system-images;android-25;google_apis;x86" --tag "google_apis" &>/dev/null
+    echo no | avdmanager create avd -n $AVD -k "system-images;android-25;google_apis;x86" --tag "google_apis"
   fi
 }
 
@@ -176,7 +176,7 @@ function start_emu {
   device_skin_height=$((${!device_app_height}+${!device_nav_height}))
   device_skin_width=$device\_SKIN_WIDTH
   device_skin=${!device_skin_width}'x'$device_skin_height
-  $ANDROID_SDK_DIR/tools/emulator -verbose -no-boot-anim -timezone "Europe/UTC" -avd $AVD -skin $device_skin -qemu -lcd-density $LCD_DPI &>/dev/null &
+  $ANDROID_SDK/tools/emulator -verbose -no-boot-anim -timezone "Europe/UTC" -avd $AVD -skin $device_skin -qemu -lcd-density $LCD_DPI &>/dev/null &
   echo Done
 }
 

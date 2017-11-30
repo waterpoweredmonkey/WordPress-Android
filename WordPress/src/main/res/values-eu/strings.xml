@@ -12,7 +12,6 @@ Language: eu_ES
 	<string name="post_settings_post_format">Bidalketa formatua</string>
 	<string name="sharing">Partekatzea</string>
 	<string name="keep_editing">Jarraitu editatzen</string>
-	<string name="all_your_sites">Nire gune guztiak</string>
 	<string name="reader_label_visit">Bisitatu</string>
 	<string name="reader_toast_err_comment_not_found">Ez da iruzkina aurkitu!</string>
 	<string name="reader_title_post_detail_wpcom">WordPress.com postontzia</string>
@@ -258,9 +257,7 @@ Language: eu_ES
 	<string name="reader_err_get_post_not_found">Bidalketa hau jada ez da existitzen</string>
 	<string name="reader_err_get_post_not_authorized">Ez daukazu bidalketa hau ikusteko baimenik</string>
 	<string name="reader_empty_followed_blogs_no_recent_posts_title">Ez dago bidalketa berririk</string>
-	<string name="media_details_copy_url_toast">URL-a arbelera kopiatu da</string>
 	<string name="edit_media">Editatu media</string>
-	<string name="media_details_copy_url">Kopiatu URL-a</string>
 	<string name="media_details_label_date_uploaded">Igota</string>
 	<string name="media_details_label_date_added">Gehituta</string>
 	<string name="selected_theme">Hautatutako itxura</string>
@@ -305,7 +302,6 @@ Language: eu_ES
 	<string name="notifications_tab">Jakinarazpenen erlaitza</string>
 	<string name="email">E-posta</string>
 	<string name="notifications_wpcom_updates">WordPress.com eguneraketak</string>
-	<string name="your_sites">Zure guneak</string>
 	<string name="stats_insights_latest_post_summary">Azken bidalketaren laburpena</string>
 	<string name="days_ago">Duela %d egun</string>
 	<string name="yesterday">Atzo</string>
@@ -428,8 +424,6 @@ Language: eu_ES
 	<string name="delete_sure_post">Ezabatu bidalketa hau</string>
 	<string name="delete_sure">Ezabatu zirriborro hau</string>
 	<string name="delete_sure_page">Ezabatu orrialde hau</string>
-	<string name="confirm_delete_multi_media">Ezabatu aukeratutako itemak?</string>
-	<string name="confirm_delete_media">Ezabatu aukeratutako itema?</string>
 	<string name="signing_out">Saioa ixten...</string>
 	<string name="more">Gehiago</string>
 	<string name="reader_label_comments_closed">Iruzkinak itxita daude</string>
@@ -587,8 +581,6 @@ Language: eu_ES
 	<string name="sure_to_cancel_edit_comment">Iruzkin honen edizioa ezeztatu?</string>
 	<string name="preview_page">Aurreikusi orrialdea</string>
 	<string name="preview_post">Aurreikusi bidalketa</string>
-	<string name="share_action_post">Bidalketa berria</string>
-	<string name="share_action_media">Media bilduma</string>
 	<string name="file_error_create">Ezin izan da media fitxategia igotzeko behin-behineko fitxategia sortu. Ziurtatu zaitez gailuak behar haina toki duela.</string>
 	<string name="open_source_licenses">Kode irekiko lizentziak</string>
 	<string name="new_post">Bidalketa berria</string>
@@ -665,7 +657,6 @@ Language: eu_ES
 	<string name="reader_btn_follow">Jarraitu</string>
 	<string name="connecting_wpcom">WordPress.com-en saioa hasten</string>
 	<string name="media_add_popup_title">Gehitu media bildumara</string>
-	<string name="select_from_media_library">Aukeratu media bildumatik</string>
 	<string name="jetpack_not_found">Ez da Jetpack plugina aurkitu</string>
 	<string name="reader_untitled_post">(Izenbururik gabe)</string>
 	<string name="reader_btn_unfollow">Jarraitzen</string>
@@ -765,7 +756,6 @@ Language: eu_ES
 	<string name="app_title">WordPress Android-erako</string>
 	<string name="tos">Zerbitzuaren baldintzak</string>
 	<string name="version">Bertsioa:</string>
-	<string name="max_thumbnail_px_size">Lehenetsitako irudi zabalera</string>
 	<string name="image_alignment">Lerrokatzea</string>
 	<string name="refresh">Freskatu</string>
 	<string name="untitled">Izenbururik gabe</string>
@@ -784,9 +774,6 @@ Language: eu_ES
 	<string name="categories">Kategoriak</string>
 	<string name="tags_separate_with_commas">Banandu etiketak komak erabiliz</string>
 	<string name="dlg_deleting_comments">Iruzkinak ezabatzen</string>
-	<string name="notification_vibrate">Bibratu</string>
-	<string name="notification_blink">Jakinarazpen keinukariaren argia</string>
-	<string name="notification_sound">Jakinarazpen soinua</string>
 	<string name="sdcard_title">SD txartela ezinbestekoa</string>
 	<string name="media">Media</string>
 	<string name="delete">Ezabatu</string>

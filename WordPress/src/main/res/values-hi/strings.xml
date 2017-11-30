@@ -16,7 +16,6 @@ Language: hi_IN
 	<string name="jetpack_info">जेटपैक की जानकारी</string>
 	<string name="reader_photo_by">Photo by %s</string>
 	<string name="pending_draft_more">आप %d के पदों का मसौदा तैयार किया है, लेकिन उन्हें कभी नहीं प्रकाशित किया। जाँच करने के लिए टैप करें I</string>
-	<string name="all_your_sites">मेरी</string>
 	<string name="reader_label_visit">भेंट</string>
 	<string name="swipe_for_more">अधिक के लिए स्वाइप करें</string>
 	<string name="reader_err_get_post_not_authorized_signin_fallback">आप इस पोस्ट को देखने के लिए अधिकृत नहीं  हैं। पहले WordPress.com में जाकर लॉग इन करें या एक ब्राउज़र को खोलने के लिए शीर्ष कार्रवाई बटन का उपयोग करें।</string>
@@ -78,7 +77,6 @@ Language: hi_IN
 	<string name="never">कभी नहीं </string>
 	<string name="unknown">अज्ञात</string>
 	<string name="edit_media">मीडिया को संपादित करे</string>
-	<string name="media_details_copy_url">यूआरएल को कॉपी करे</string>
 	<string name="media_details_label_date_uploaded">अपलोड की गई</string>
 	<string name="could_not_load_theme">थीम लोड नहीं हो सका</string>
 	<string name="theme_by_author_prompt_append">द्वारा %1$s</string>
@@ -125,9 +123,6 @@ Language: hi_IN
 	<string name="notifications_tab">अधिसूचना सूचि</string>
 	<string name="email">ईमेल</string>
 	<string name="app_notifications">एप्लिकेशन अधिसूची</string>
-	<string name="notifications_other">अन्य</string>
-	<string name="notifications_account_emails">Wordpress.com की ओर से ईमेल</string>
-	<string name="your_sites">आपकी साइटे</string>
 	<string name="button_revert">उलट दें</string>
 	<string name="days_ago">%d दिन पहले</string>
 	<string name="yesterday">कल</string>
@@ -332,7 +327,6 @@ Language: hi_IN
 	<string name="link_enter_url_text">कड़ी शब्द (वैकल्पिक)</string>
 	<string name="dlg_spamming_comments">स्पैम के रूप में चिन्हित</string>
 	<string name="new_media">नया मीडिया</string>
-	<string name="share_action_post">नया पोस्ट</string>
 	<string name="new_post">नया पोस्ट</string>
 	<string name="open_source_licenses">मुक्त स्रोत लाइसेंस</string>
 	<string name="page_settings">पृष्ठ सेटिंग्स</string>
@@ -364,7 +358,6 @@ Language: hi_IN
 	<string name="connection_error">कनेक्शन त्रुटि</string>
 	<string name="media_error_no_permission">आपको मीडिया समूह देखने की अनुमति नहीं है</string>
 	<string name="select_categories">श्रेणियों को चुने</string>
-	<string name="share_action_media">मीडिया संग्रह</string>
 	<string name="required_field">आवश्यक फ़ील्ड</string>
 	<string name="saving_changes">परिवर्तन सहेजे जा रहा</string>
 	<string name="site_address">आपका अपने से होस्ट किया हुआ पता(यूआरएल)</string>
@@ -440,7 +433,6 @@ Language: hi_IN
 	<string name="reader_toast_err_view_image">छवि को देखने में असमर्थ</string>
 	<string name="media_add_popup_title">मीडिया संग्रह में जोड़े</string>
 	<string name="reader_toast_err_tag_exists">आप पहले से ही इस टैग का अनुसरण कर रहे है</string>
-	<string name="select_from_media_library">मीडिया लाइब्रेरी से चुने </string>
 	<string name="empty_list_default">इस सूची खाली है</string>
 	<string name="nux_tutorial_get_started_title">शुरू हो जाये!</string>
 	<string name="reader_toast_err_tag_invalid">वह एक मान्य टैग नहीं है</string>
@@ -534,7 +526,6 @@ Language: hi_IN
 	<string name="version">संस्करण</string>
 	<string name="tos">सेवा की शर्तें</string>
 	<string name="app_title">एंड्राइड के लिए वर्डप्रेस</string>
-	<string name="max_thumbnail_px_width">मूलभूत छवि की चौड़ाई</string>
 	<string name="image_alignment">संरेखण</string>
 	<string name="refresh">रिफ्रेश</string>
 	<string name="untitled">बिना शीर्षक का</string>
@@ -553,9 +544,6 @@ Language: hi_IN
 	<string name="title">शीर्षक</string>
 	<string name="tags_separate_with_commas">टैग को अल्पविराम से अलग करे \n</string>
 	<string name="dlg_deleting_comments">टिप्पणियों को हटाना</string>
-	<string name="notification_vibrate">वाइब्रेट</string>
-	<string name="notification_blink">ब्लिंक सुचना का प्रकाश </string>
-	<string name="notification_sound">सूचना ध्वनि</string>
 	<string name="sdcard_title">एसडी कार्ड आवश्यक है</string>
 	<string name="media">मीडिया</string>
 	<string name="delete">हटाये</string>

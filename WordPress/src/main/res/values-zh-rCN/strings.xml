@@ -33,7 +33,6 @@ Language: zh_CN
 	<string name="media_encoder_quality_85">中</string>
 	<string name="media_encoder_quality_80">低</string>
 	<string name="media_upload_state_uploaded">已上传</string>
-	<string name="media_upload_state_failed">失败</string>
 	<string name="media_upload_state_deleted">已删除</string>
 	<string name="media_upload_state_deleting">正在删除</string>
 	<string name="media_upload_state_uploading">正在上传</string>
@@ -390,8 +389,6 @@ Language: zh_CN
 	<string name="reader_empty_followed_blogs_no_recent_posts_description">您关注的站点近期未发布任何内容</string>
 	<string name="reader_empty_followed_blogs_no_recent_posts_title">无近期文章</string>
 	<string name="edit_media">编辑媒体</string>
-	<string name="media_details_copy_url_toast">已将 URL 复制到剪贴板</string>
-	<string name="media_details_copy_url">复制 URL</string>
 	<string name="media_details_label_date_uploaded">已上传</string>
 	<string name="media_details_label_date_added">已添加</string>
 	<string name="selected_theme">选择的主题</string>
@@ -481,13 +478,7 @@ Language: zh_CN
 	<string name="email">电子邮件</string>
 	<string name="notifications_tab">“通知”选项卡</string>
 	<string name="app_notifications">应用程序通知</string>
-	<string name="notifications_comments_other_blogs">其他站点上的评论</string>
-	<string name="notifications_other">其他</string>
 	<string name="notifications_wpcom_updates">WordPress.com 更新</string>
-	<string name="notifications_account_emails">来自 WordPress.com 的电子邮件</string>
-	<string name="notifications_account_emails_summary">我们会将与您的帐户相关的重要电子邮件都发送给您，但是您还可以获得一些其他的有用信息。</string>
-	<string name="your_sites">您的站点</string>
-	<string name="notifications_sights_and_sounds">场景和声音</string>
 	<string name="stats_insights_latest_post_trend">距 %2$s 发布已有 %1$s。以下是该文章到目前为止的效果…</string>
 	<string name="stats_insights_latest_post_summary">最新的文章摘要</string>
 	<string name="button_revert">恢复</string>
@@ -647,8 +638,6 @@ Language: zh_CN
 	<string name="themes_fetching">正在获取主题…</string>
 	<string name="ssl_certificate_details">详细信息</string>
 	<string name="cab_selected">已选 %d 个</string>
-	<string name="confirm_delete_media">是否删除所选项目？</string>
-	<string name="confirm_delete_multi_media">是否删除所选项目？</string>
 	<string name="delete_sure_page">删除此页面</string>
 	<string name="delete_sure">删除此草稿</string>
 	<string name="delete_sure_post">删除此文章</string>
@@ -807,8 +796,6 @@ Language: zh_CN
 	<string name="invalid_site_url_message">请检查输入的站点 URL 是否有效</string>
 	<string name="open_source_licenses">开源许可协议</string>
 	<string name="file_error_create">无法创建上传媒体所需的临时文件。请确保设备有足够的空闲空间.</string>
-	<string name="share_action_media">媒体库</string>
-	<string name="share_action_post">新文章</string>
 	<string name="category_name">分类名称</string>
 	<string name="add_new_category">添加新分类</string>
 	<string name="view_in_browser">在浏览器中查看</string>
@@ -923,7 +910,6 @@ Language: zh_CN
 	<string name="reader_btn_share">共享</string>
 	<string name="reader_untitled_post">(未命名)</string>
 	<string name="jetpack_not_found">没有找到Jetpack插件</string>
-	<string name="select_from_media_library">从媒体库选择</string>
 	<string name="empty_list_default">这个列表是空的</string>
 	<string name="media_add_popup_title">添加到媒体库</string>
 	<string name="passcode_turn_on">打开PIN锁</string>
@@ -1012,7 +998,6 @@ Language: zh_CN
 	<string name="app_title">WordPress for Android</string>
 	<string name="tos">服务条款</string>
 	<string name="version">版本</string>
-	<string name="max_thumbnail_px_size">默认图片宽度</string>
 	<string name="image_alignment">对齐</string>
 	<string name="refresh">刷新</string>
 	<string name="untitled">无标题</string>
@@ -1030,9 +1015,6 @@ Language: zh_CN
 	<string name="categories">分类</string>
 	<string name="title">标题</string>
 	<string name="dlg_deleting_comments">删除评论</string>
-	<string name="notification_vibrate">振动</string>
-	<string name="notification_sound">通知声音</string>
-	<string name="notification_blink">闪烁通知灯</string>
 	<string name="sdcard_title">需要 SD 卡</string>
 	<string name="media">媒体</string>
 	<string name="approve">通过</string>

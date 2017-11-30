@@ -1,11 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Translation-Revision-Date: 2017-09-03 12:48:19+0000
+Translation-Revision-Date: 2017-11-10 23:07:30+0000
 Plural-Forms: nplurals=2; plural=n != 1;
 Generator: GlotPress/2.4.0-alpha
 Language: es
 -->
 <resources>
+	<string name="login_error_suffix">\n¿Quizás probando con otra cuenta?</string>
+	<string name="login_error_generic">Hubo algún problema al conectar con la cuenta de Google.</string>
+	<string name="login_error_email_not_found">La cuenta de Google \'%s\' no coincide con ninguna cuenta existente en WordPress.com</string>
+	<string name="login_error_button">Cerrar</string>
+	<string name="login_google_button_suffix">Acceder con Google.</string>
+	<string name="login_google_button_prefix">O puedes</string>
+	<string name="enter_wpcom_password_google">Para seguir con esta cuenta de Google, por favor, facilita la contraseña correspondiente de WordPress.com. Solo se te pedirá una vez.</string>
+	<string name="error_generic_network">Ocurrió un error en la red. Por favor, revisa tu conexión e inténtalo de nuevo.</string>
+	<string name="post_settings_remove_featured_image">Quitar imagen destacada</string>
+	<string name="post_settings_choose_featured_image">Elegir imagen destacada</string>
+	<string name="login_log_in_for_share_intent">Accede a WordPress.com para compartir el contenido.</string>
+	<string name="enter_site_address_share_intent">Introduce la dirección de tu sitio WordPress en el que quieras compartir el contenido.</string>
+	<string name="jetpack_disconnect_error_toast">Error al desconectar el sitio</string>
+	<string name="jetpack_disconnect_success_toast">Sitio desconectado</string>
+	<string name="jetpack_disconnect_confirm">Desconectar</string>
+	<string name="jetpack_disconnect_confirmation_message">¿Estás seguro de querer desconectar Jetpack del sitio?</string>
+	<string name="jetpack_disconnect_pref_title">"Desconecta de WordPress.com"</string>
+	<string name="site_settings_jetpack_whitelist_description">Puedes poner en lista blanca una dirección IP o series de direcciones, evitando que las bloquee Jetpack. Se aceptan IPv4 y IPv6. Para especificar un rango introduce  un valor inferior y un valor superior separados por guiones. Ejemplo: 12.12.12.1–12.12.12.100</string>
+	<string name="jetpack_require_two_factor_title">Requiere la identificación en dos pasos</string>
+	<string name="jetpack_match_wpcom_via_email_title">Relacionar cuentas usando el correo electrónico</string>
+	<string name="jetpack_allow_wpcom_sign_in_title">Permitir el acceso con WordPress.com</string>
+	<string name="jetpack_wpcom_sign_in_category_title">Acceso con WordPress.com</string>
+	<string name="jetpack_brute_force_whitelist_title">Direcciones IP en lista blanca</string>
+	<string name="jetpack_prevent_brute_force_title">Bloquea intentos de acceso malisiosos</string>
+	<string name="jetpack_prevent_brute_force_category_title">Protección contra ataques de fuerza bruta</string>
+	<string name="jetpack_send_wp_notifications_title">Enviar avisos instantáneos</string>
+	<string name="jetpack_send_email_notifications_title">Enviar avisos por correo electrónico</string>
+	<string name="jetpack_monitor_uptime_title">Supervisar el tiempo de actividad de tu sitio</string>
+	<string name="jetpack_security_setting_title">Seguridad</string>
+	<string name="jetpack_site_settings_category_title">Ajustes de Jetpack</string>
+	<string name="share_intent_adding_to">Añadiendo a</string>
+	<string name="share_intent_pick_site">Elige el sitio</string>
+	<string name="share_action_media">Añadir a la biblioteca de medios</string>
+	<string name="share_action_post">Añadir a una nueva entrada</string>
+	<string name="share_media_permission_required">Se requieren permisos para compartir imágenes o vídeos</string>
+	<string name="invalid_ip_or_range">IP o rango de IP no válido</string>
+	<string name="deleting_media_dlg">Eliminando</string>
+	<string name="confirm_delete_media_video">¿Borrar este video?</string>
+	<string name="confirm_delete_media_image">¿Eliminar esta imagen?</string>
+	<string name="media_title_document_details">Detalles del documento</string>
+	<string name="media_title_audio_details">Detalles del audio</string>
+	<string name="media_title_video_details">Detalles del vídeo:</string>
+	<string name="media_title_image_details">Detalles de la imagen</string>
+	<string name="fab_content_description_preview">Vista previa</string>
+	<string name="media_edit_upload_date_caption">Fecha de actualización</string>
+	<string name="media_edit_duration_caption">Duración</string>
+	<string name="media_edit_video_dimensions_caption">Dimensiones de vídeo</string>
+	<string name="media_edit_image_dimensions_caption">Sin imagen</string>
+	<string name="media_edit_filetype_caption">Tipo de archivo</string>
+	<string name="media_edit_filename_caption">Nombre del archivo</string>
+	<string name="media_edit_url_caption">URL</string>
+	<string name="media_edit_file_details_card_caption">Detalles de documentos</string>
+	<string name="media_edit_alttext_text">Texto alternativo</string>
+	<string name="copy">Copiar</string>
+	<string name="connect_site">Conectar el sitio</string>
+	<string name="notification_settings_item_sights_and_sounds_blink_light">Luz parpadeante</string>
+	<string name="notification_settings_item_sights_and_sounds_vibrate_device">Vibración del dispositivo</string>
+	<string name="notification_settings_item_sights_and_sounds_choose_sound">Elige sonido</string>
+	<string name="notification_settings_category_sights_and_sounds">Vistas y sonidos</string>
+	<string name="notification_settings_item_other_account_emails">Correo electrónico de WordPress.com</string>
+	<string name="notification_settings_item_other_pending_drafts">Avísame de borradores pendientes</string>
+	<string name="notification_settings_item_other_comments_other_blogs">Comentarios en otros sitios</string>
+	<string name="notification_settings_category_other">Otros</string>
+	<string name="notification_settings_item_your_sites_all_your_sites">Todos mis sitios</string>
+	<string name="notification_settings_category_your_sites">Tus sitios</string>
+	<string name="notification_settings_master_off_message">Desactivando los ajustes de avisos desactivará todos los avisos de esta aplicación, da igual el tipo. Puedes ajustar al detalle que tipo de aviso recibir tras activar los ajustes de avisos.</string>
+	<string name="notification_settings_master_off_title">Para recibir avisos en este dispositivo activa los ajustes de avisos.</string>
+	<string name="notification_settings_master_hint_off">Activar avisos</string>
+	<string name="notification_settings_master_hint_on">Desactivar avisos</string>
+	<string name="notification_settings_master_status_off">Inactivos</string>
+	<string name="notification_settings_master_status_on">Activos</string>
+	<string name="max_video_resolution">Tamaño máximo de vídeo</string>
+	<string name="max_thumbnail_px_size">Tamaño máximo de imagen</string>
 	<string name="error_media_recover_post">No nos fue posible subir los medios a esta entrada. Por favor, edita la entrada e inténtalo de nuevo.</string>
 	<string name="error_page_does_not_exist">Esta página ya no existe</string>
 	<string name="error_upload_post_media_param">Hubo un error al subir los medios a esta entrada: %s.</string>
@@ -29,7 +102,7 @@ Language: es
 	<string name="async_promo_description">¡Ahora puedes salir del editor y tu entrada se guardará y publicará entre bambalinas! ¡Anímate a probarlo!</string>
 	<string name="async_promo_title">Publica con confianza</string>
 	<string name="editor_uploading_post">Tu entrada se está subiendo</string>
-	<string name="uploading_post_media">Subiendo medios…</string>
+	<string name="uploading_media">Subiendo medios…</string>
 	<string name="dialog_confirm_cancel_post_media_uploading">¿Estás seguro? Al borrar esta entrada también cancelarás la subida de medios.</string>
 	<string name="page_scheduled">Página programada</string>
 	<string name="post_scheduled">Entrada programada</string>
@@ -41,7 +114,6 @@ Language: es
 	<string name="post_queued">Entrada a la espera</string>
 	<string name="uploading_post">Subiendo "%s"</string>
 	<string name="connection_to_server_lost">Se ha perdido la conexión al servidor</string>
-	<string name="max_video_resolution">Resolución máxima</string>
 	<string name="login_epilogue_mysites_other">Mis sitios</string>
 	<string name="login_epilogue_mysites_one">Mi sitio</string>
 	<string name="login_logged_in_as">Conectado como</string>
@@ -280,7 +352,7 @@ Language: es
 	<string name="media_encoder_quality_85">Media</string>
 	<string name="media_encoder_quality_80">Baja</string>
 	<string name="media_upload_state_uploaded">Se ha subido</string>
-	<string name="media_upload_state_failed">No se ha podido subir</string>
+	<string name="media_upload_state_failed">Fallo al subir</string>
 	<string name="media_upload_state_deleted">Se ha eliminado</string>
 	<string name="media_upload_state_deleting">Eliminando</string>
 	<string name="media_upload_state_uploading">Subiendo</string>
@@ -331,9 +403,7 @@ Language: es
 	<string name="jetpack_info">Información de Jetpack</string>
 	<string name="reader_photo_by">Foto de %s</string>
 	<string name="reader_label_visit">Visitar</string>
-	<string name="all_your_sites">Todos mis sitios</string>
 	<string name="pending_draft_more">Escribiste %d borradores de entradas, pero nunca las publicaste. Pulsa para revisarlas.</string>
-	<string name="notification_pending_drafts">Notifícame cuando tenga borradores pendientes</string>
 	<string name="invalid_verification_code_format">Debe ser un número de seis dígitos</string>
 	<string name="confirm_discard_changes">Descartar cambios no guardados?</string>
 	<string name="swipe_for_more">Deslizar para ver más</string>
@@ -740,8 +810,7 @@ Language: es
 	<string name="reader_empty_followed_blogs_no_recent_posts_description">Los sitios que estás siguiendo no han publicado nada recientemente</string>
 	<string name="reader_empty_followed_blogs_no_recent_posts_title">No hay entradas recientes</string>
 	<string name="edit_media">Editar multimedia</string>
-	<string name="media_details_copy_url_toast">URL copiada al portapapeles</string>
-	<string name="media_details_copy_url">Copiar URL</string>
+	<string name="media_edit_copy_url_toast">URL copiada en el portapapeles</string>
 	<string name="media_details_label_date_uploaded">Subido</string>
 	<string name="media_details_label_date_added">Añadido</string>
 	<string name="selected_theme">Tema seleccionado</string>
@@ -832,13 +901,8 @@ Language: es
 	<string name="email">Correo electrónico</string>
 	<string name="notifications_tab">Pestaña de avisos</string>
 	<string name="app_notifications">Avisos de la aplicación</string>
-	<string name="notifications_comments_other_blogs">Comentarios en otros sitios</string>
-	<string name="notifications_other">Otras</string>
 	<string name="notifications_wpcom_updates">Actualizaciones de WordPress.com</string>
-	<string name="notifications_account_emails">Correo de WordPress.com</string>
-	<string name="notifications_account_emails_summary">Siempre mandamos correos electrónicos importantes relativos a tu cuenta, pero también obtendrás extras útiles.</string>
-	<string name="your_sites">Tus sitios</string>
-	<string name="notifications_sights_and_sounds">Vistas y sonidos</string>
+	<string name="notification_settings_item_other_account_emails_summary">Siempre mandamos correos electrónicos importantes relativos a tu cuenta, pero también obtendrás extras útiles.</string>
 	<string name="stats_insights_latest_post_trend">Ha pasado %1$s desde que se publicó %2$s. Aquí tienes el rendimiento de la entrada desde entonces…</string>
 	<string name="stats_insights_latest_post_summary">Sumario de la última entrada</string>
 	<string name="button_revert">Volver</string>
@@ -1007,8 +1071,6 @@ Language: es
 	<string name="themes_fetching">Obteniendo temas…</string>
 	<string name="ssl_certificate_details">Detalles</string>
 	<string name="cab_selected">%d seleccionados</string>
-	<string name="confirm_delete_media">¿Quieres eliminar el elemento seleccionado?</string>
-	<string name="confirm_delete_multi_media">¿Quieres eliminar los elementos seleccionados?</string>
 	<string name="delete_sure_page">Eliminar esta página</string>
 	<string name="delete_sure">Eliminar este borrador</string>
 	<string name="delete_sure_post">Eliminar esta entrada</string>
@@ -1175,8 +1237,6 @@ Language: es
 	<string name="invalid_site_url_message">Comprueba que la URL del sitio introducida es válida</string>
 	<string name="open_source_licenses">Licencias Open source</string>
 	<string name="file_error_create">No se pudo crear un archivo temporal para subir el archivo multimedia. Asegúrate que haya suficiente espacio libre en tu dispositivo.</string>
-	<string name="share_action_media">Librería multimedia</string>
-	<string name="share_action_post">Nueva entrada</string>
 	<string name="category_name">Nombre de la categoría</string>
 	<string name="add_new_category">Añadir nueva categoría</string>
 	<string name="view_in_browser">Ver en el navegador</string>
@@ -1294,7 +1354,6 @@ Language: es
 	<string name="reader_btn_share">Compartir</string>
 	<string name="reader_untitled_post">Sin título</string>
 	<string name="jetpack_not_found">No se ha encontrado el plugin Jetpack</string>
-	<string name="select_from_media_library">Seleccionar de la biblioteca multimedia</string>
 	<string name="empty_list_default">Esta lista esta vacía</string>
 	<string name="media_add_popup_title">Añadir a biblioteca multimedia</string>
 	<string name="passcode_turn_on">Bloquear PIN</string>
@@ -1385,7 +1444,6 @@ Language: es
 	<string name="app_title">WordPress para Android</string>
 	<string name="tos">Términos del servicio</string>
 	<string name="version">Versión</string>
-	<string name="max_thumbnail_px_size">Ancho predeterminado de la imagen </string>
 	<string name="image_alignment">Alineamiento</string>
 	<string name="refresh">Refrescar</string>
 	<string name="untitled">Sin Título</string>
@@ -1404,9 +1462,6 @@ Language: es
 	<string name="tags_separate_with_commas">Separa las etiquetas con comas</string>
 	<string name="title">Título</string>
 	<string name="dlg_deleting_comments">Eliminando comentarios</string>
-	<string name="notification_vibrate">Vibrar</string>
-	<string name="notification_sound">Sonido de aviso</string>
-	<string name="notification_blink">Notificación luminosa</string>
 	<string name="sdcard_title">Requiere tarjeta SD</string>
 	<string name="media">Multimedia</string>
 	<string name="approve">Aprobar</string>

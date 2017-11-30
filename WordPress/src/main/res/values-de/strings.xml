@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Translation-Revision-Date: 2017-07-05 07:34:09+0000
+Translation-Revision-Date: 2017-10-10 20:14:59+0000
 Plural-Forms: nplurals=2; plural=n != 1;
 Generator: GlotPress/2.4.0-alpha
 Language: de
 -->
 <resources>
+	<string name="fab_content_description_preview">Vorschau</string>
+	<string name="media_edit_url_caption">URL</string>
+	<string name="connect_site">Website verbinden</string>
+	<string name="notification_settings_item_sights_and_sounds_blink_light">Blinklicht</string>
+	<string name="notification_settings_item_sights_and_sounds_vibrate_device">Gerät vibrieren lassen</string>
+	<string name="notification_settings_category_sights_and_sounds">Anzeige und Töne</string>
+	<string name="notification_settings_item_other_comments_other_blogs">Kommentare auf anderen Websites</string>
+	<string name="notification_settings_item_your_sites_all_your_sites">Alle meine Websites</string>
+	<string name="notification_settings_category_your_sites">Deine Websites</string>
+	<string name="notification_settings_master_hint_off">Benachrichtigungen aktivieren</string>
+	<string name="notification_settings_master_hint_on">Benachrichtigungen deaktivieren</string>
+	<string name="notification_settings_master_status_off">Aus</string>
+	<string name="notification_settings_master_status_on">Ein</string>
+	<string name="max_video_resolution">Maximale Videogröße</string>
+	<string name="max_thumbnail_px_size">Maximale Bildgröße</string>
+	<string name="error_page_does_not_exist">Diese Seite existiert nicht mehr</string>
+	<string name="add_media_progress">Medien werden hinzugefügt</string>
+	<string name="error_publish_empty_page">Eine leere Seite kann nicht veröffentlicht werden</string>
+	<string name="cant_open_url">Link konnte nicht geöffnet werden</string>
+	<string name="page_scheduled">Seite geplant</string>
+	<string name="post_scheduled">Beitrag geplant</string>
 	<string name="format_bar_description_page">Seitenumbruch</string>
 	<string name="format_bar_description_heading">Überschrift</string>
 	<string name="new_editor_promo_title_beta">Beta</string>
@@ -59,13 +80,13 @@ Language: de
 	<string name="media_encoder_quality_85">Mittel</string>
 	<string name="media_encoder_quality_80">Niedrig</string>
 	<string name="media_upload_state_uploaded">Hochgeladen</string>
-	<string name="media_upload_state_failed">Fehlgeschlagen</string>
 	<string name="media_upload_state_deleted">Gelöscht</string>
 	<string name="media_upload_state_deleting">Lösche</string>
 	<string name="media_upload_state_uploading">Lade hoch</string>
 	<string name="media_upload_state_queued">In Warteschlange</string>
 	<string name="update_draft">Entwurf aktualisieren</string>
 	<string name="keep_editing">Weiter bearbeiten</string>
+	<string name="image_quality">Bildqualität</string>
 	<string name="error_all_media_upload_canceled">Aufgrund eines unbekannten Fehlers wurden alle Medien-Uploads abgebrochen. Bitte versuche erneut, die Inhalte hochzuladen</string>
 	<string name="error_unknown_post_type">Unbekanntes Beitragsformat</string>
 	<string name="error_fetch_site_after_creation">Die Website wurde erstellt. Gegebenenfalls musst du deine Websites in der Website-Auswahl aktualisieren.</string>
@@ -92,9 +113,7 @@ Language: de
 	<string name="jetpack_info">Jetpack Info</string>
 	<string name="reader_photo_by">Foto von %s</string>
 	<string name="reader_label_visit">Besuche</string>
-	<string name="all_your_sites">Alle meine Websites</string>
 	<string name="pending_draft_more">Du hast %d Beiträge geschrieben, aber nie veröffentlicht. Tippe, um sie zu prüfen.</string>
-	<string name="notification_pending_drafts">Benachrichtige mich bei wartenden Entwürfen</string>
 	<string name="invalid_verification_code_format">Muss eine 6-stellige Zahl sein</string>
 	<string name="confirm_discard_changes">Nicht gespeicherte Änderungen verwerfen?</string>
 	<string name="swipe_for_more">Wischen für mehr</string>
@@ -349,6 +368,8 @@ Language: de
 	<string name="pending_email_change_snackbar">Klicke auf den Bestätigungslink in der E-Mail, die an %1$s gesendet wurde, um deine neue Adresse zu bestätigen.</string>
 	<string name="editor_toast_uploading_please_wait">Medien werden hochgeladen … Bitte warte, bis der Vorgang abgeschlossen ist.</string>
 	<string name="error_refresh_comments_showing_older">Die Kommentare konnten nicht aktualisiert werden. Es werden ältere Kommentare angezeigt.</string>
+	<string name="post_settings_set_featured_image">Beitragsbild festlegen</string>
+	<string name="post_settings_featured_image">Beitragsbild</string>
 	<string name="visual_editor_enabled">Visueller Editor aktiviert</string>
 	<string name="editor_content_placeholder">Teile deine Geschichte hier …</string>
 	<string name="editor_page_title_placeholder">Seitentitel</string>
@@ -494,8 +515,7 @@ Language: de
 	<string name="reader_empty_followed_blogs_no_recent_posts_description">Die Websites, denen du folgst, haben keine aktuellen Beiträge veröffentlicht</string>
 	<string name="reader_empty_followed_blogs_no_recent_posts_title">Keine aktuellen Beiträge</string>
 	<string name="edit_media">Medien bearbeiten</string>
-	<string name="media_details_copy_url_toast">URL in Zwischenablage kopiert</string>
-	<string name="media_details_copy_url">Kopiere URL</string>
+	<string name="media_edit_copy_url_toast">URL in Zwischenablage kopiert</string>
 	<string name="media_details_label_date_uploaded">Hochgeladen</string>
 	<string name="media_details_label_date_added">Hinzugefügt</string>
 	<string name="selected_theme">Gewähltes Theme</string>
@@ -585,13 +605,7 @@ Language: de
 	<string name="email">E-Mail</string>
 	<string name="notifications_tab">Registerkarte „Benachrichtigungen“</string>
 	<string name="app_notifications">App-Benachrichtigungen</string>
-	<string name="notifications_comments_other_blogs">Kommentare auf anderen Websites</string>
-	<string name="notifications_other">Andere</string>
 	<string name="notifications_wpcom_updates">WordPress.com-Aktualisierungen</string>
-	<string name="notifications_account_emails">E-Mail von WordPress.com</string>
-	<string name="notifications_account_emails_summary">Wichtige E-Mails zu deinem Konto senden wir dir auf jeden Fall, aber du kannst auch ein paar nützliche Extras dazubekommen.</string>
-	<string name="your_sites">Deine Websites</string>
-	<string name="notifications_sights_and_sounds">Licht und Ton</string>
 	<string name="stats_insights_latest_post_trend">Die Veröffentlichung von %2$s ist %1$s her. Hier siehst du, wie es dem Beitrag bisher ergangen ist ...</string>
 	<string name="stats_insights_latest_post_summary">Übersicht des letzten Beitrags</string>
 	<string name="button_revert">Rückgängig</string>
@@ -758,8 +772,6 @@ Language: de
 	<string name="themes_fetching">Themes werden abgerufen…</string>
 	<string name="ssl_certificate_details">Details</string>
 	<string name="cab_selected">%d ausgewählt</string>
-	<string name="confirm_delete_media">Ausgewähltes Objekt löschen?</string>
-	<string name="confirm_delete_multi_media">Ausgewählte Objekte löschen?</string>
 	<string name="delete_sure_page">Lösche diese Seite</string>
 	<string name="delete_sure">Lösche diesen Entwurf</string>
 	<string name="delete_sure_post">Lösche diesen Beitrag</string>
@@ -920,8 +932,6 @@ Language: de
 	<string name="invalid_site_url_message">Überprüfe, ob die eingegebene Website-URL gültig ist.</string>
 	<string name="open_source_licenses">Open-Source-Lizenzen</string>
 	<string name="file_error_create">Konnte keine temporäre Datei für den Medienupload erstellen. Stelle sicher, dass genügend Speicherplatz auf deinem Gerät verfügbar ist.</string>
-	<string name="share_action_media">Mediathek</string>
-	<string name="share_action_post">Neuer Beitrag</string>
 	<string name="category_name">Kategorie-Name</string>
 	<string name="add_new_category">Neue Kategorie hinzufügen</string>
 	<string name="view_in_browser">Im Browser anschauen</string>
@@ -1039,7 +1049,6 @@ Language: de
 	<string name="reader_btn_share">Teilen</string>
 	<string name="reader_untitled_post">(Ohne Titel)</string>
 	<string name="jetpack_not_found">Jetpack Plugin nicht gefunden</string>
-	<string name="select_from_media_library">Aus der Mediathek auswählen</string>
 	<string name="empty_list_default">Diese Liste ist leer</string>
 	<string name="media_add_popup_title">Zur Mediathek hinzufügen</string>
 	<string name="passcode_turn_on">Stelle PIN-Sperre an</string>
@@ -1129,7 +1138,6 @@ Language: de
 	<string name="app_title">WordPress für Android</string>
 	<string name="tos">Nutzungsbedingungen</string>
 	<string name="version">Version</string>
-	<string name="max_thumbnail_px_width">Standardbreite für Bilder</string>
 	<string name="image_alignment">Ausrichtung</string>
 	<string name="refresh">Aktualisieren</string>
 	<string name="untitled">Unbenannt</string>
@@ -1147,9 +1155,6 @@ Language: de
 	<string name="categories">Kategorien</string>
 	<string name="title">Titel</string>
 	<string name="dlg_deleting_comments">Lösche Kommentare</string>
-	<string name="notification_vibrate">Vibration</string>
-	<string name="notification_sound">Benachrichtigungston</string>
-	<string name="notification_blink">Benachrichtigungslicht blinken</string>
 	<string name="sdcard_title">SD-Karte benötigt</string>
 	<string name="media">Media</string>
 	<string name="approve">Genehmigen</string>

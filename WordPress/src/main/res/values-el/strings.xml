@@ -53,7 +53,6 @@ Language: el_GR
 	<string name="media_encoder_quality_85">Μεσαίο</string>
 	<string name="media_encoder_quality_80">Χαμηλό</string>
 	<string name="media_upload_state_uploaded">Μεταφορτώθηκε</string>
-	<string name="media_upload_state_failed">Απέτυχε</string>
 	<string name="media_upload_state_deleted">Διαγράφηκε</string>
 	<string name="media_upload_state_deleting">Γίνεται διαγραφή</string>
 	<string name="media_upload_state_uploading">Γίνεται μεταφόρτωση</string>
@@ -103,9 +102,7 @@ Language: el_GR
 	<string name="jetpack_info">Πληροφορίες για το Jetpack</string>
 	<string name="reader_photo_by">Φωτογραφία από %s</string>
 	<string name="reader_label_visit">Επισκεφθείτε</string>
-	<string name="all_your_sites">Όλοι οι ιστότοποί μου</string>
 	<string name="pending_draft_more">Έχετε %d προσχέδια άρθρων αλλά ποτέ δεν τα δημοσιεύσατε. Πατήστε για να τα ελέγξετε.</string>
-	<string name="notification_pending_drafts">Ειδοποιήστε με για εκκρεμή προσχέδια</string>
 	<string name="invalid_verification_code_format">Πρέπει να είναι εξαψήφιος αριθμός</string>
 	<string name="confirm_discard_changes">Απόρριψη μη αποθηκευμένων αλλαγών;</string>
 	<string name="swipe_for_more">Σαρώστε για περισσότερα</string>
@@ -499,8 +496,6 @@ Language: el_GR
 	<string name="reader_empty_followed_blogs_no_recent_posts_description">Οι σελίδες που ακολουθείτε δεν έχουν δημοσιεύσει κάτι πρόσφατα</string>
 	<string name="reader_empty_followed_blogs_no_recent_posts_title">Καμία πρόσφατη δημοσίευση</string>
 	<string name="edit_media">Επεξεργασία πολυμέσου</string>
-	<string name="media_details_copy_url_toast">Η διεύθυνση αντιγράφτηκε στο πρόχειρο</string>
-	<string name="media_details_copy_url">Αντιγραφή διεύθυνσης</string>
 	<string name="media_details_label_date_uploaded">Ανέβηκε</string>
 	<string name="media_details_label_date_added">Προστέθηκε</string>
 	<string name="selected_theme">Επιλεγμένο Θέμα</string>
@@ -590,13 +585,7 @@ Language: el_GR
 	<string name="email">Email</string>
 	<string name="notifications_tab">Καρτέλα ειδοποιήσεων</string>
 	<string name="app_notifications">Ειδοποιήσεις εφαρμογής</string>
-	<string name="notifications_comments_other_blogs">Σχόλια σε άλλους ιστότοπους</string>
-	<string name="notifications_other">Άλλα</string>
 	<string name="notifications_wpcom_updates">Ενημερώσεις του WordPress.com</string>
-	<string name="notifications_account_emails">Μήνυμα από το WordPress.com</string>
-	<string name="notifications_account_emails_summary">Θα σας στέλνουμε πάντα σημαντικά email σχετικά με το λογαριασμό σας αλλά μπορείτε να λαμβάνετε και μερικά χρήσιμα επιπλέον.</string>
-	<string name="your_sites">Οι ιστότοποί σας</string>
-	<string name="notifications_sights_and_sounds">Εικόνες και Ήχοι</string>
 	<string name="stats_insights_latest_post_trend">Πέρασαν %1$s από τη δημοσίευση του %2$s. Να πως πήγε το άρθρο μέχρι στιγμής...</string>
 	<string name="stats_insights_latest_post_summary">Πιο πρόσφατη σύνοψη άρθρων</string>
 	<string name="button_revert">Επαναφορά</string>
@@ -756,8 +745,6 @@ Language: el_GR
 	<string name="themes_fetching">Λήψη θεμάτων...</string>
 	<string name="ssl_certificate_details">Λεπτομέρειες</string>
 	<string name="cab_selected">%d επιλεγμένα</string>
-	<string name="confirm_delete_media">Διαγραφή επιλεγμένου αντικειμένου;</string>
-	<string name="confirm_delete_multi_media">Διαγραφή επιλεγμένων αντικειμένων;</string>
 	<string name="delete_sure_page">Διαγραφή της σελίδας</string>
 	<string name="delete_sure">Διαγραφή αυτού του προσχεδίου</string>
 	<string name="delete_sure_post">Διαγραφή αυτής της ανάρτησης</string>
@@ -917,8 +904,6 @@ Language: el_GR
 	<string name="invalid_site_url_message">Βεβαιωθείτε ότι το URL του ιστότοπου που δώσατε είναι έγκυρο</string>
 	<string name="open_source_licenses">Άδειες ανοιχτού κώδικα</string>
 	<string name="file_error_create">Αδυναμία δημιουργίας προσωρινού αρχείου για μεταφόρτωση πολυμέσων. Βεβαιωθείτε ότι υπάρχει αρκετός ελεύθερος χώρος στη συσκευή σας.</string>
-	<string name="share_action_media">Βιβλιοθήκη πολυμέσων</string>
-	<string name="share_action_post">Νέα ανάρτηση</string>
 	<string name="category_name">Όνομα κατηγορίας</string>
 	<string name="add_new_category">Προσθήκη νέας κατηγορίας</string>
 	<string name="view_in_browser">Προβολή στον περιηγητή</string>
@@ -1033,7 +1018,6 @@ Language: el_GR
 	<string name="reader_btn_share">Μοιράσου</string>
 	<string name="reader_untitled_post">Ανώνυμο</string>
 	<string name="jetpack_not_found">Δεν βρέθηκε το Jetpack plugin</string>
-	<string name="select_from_media_library">Διαλέξτε από την βιβλιοθήκη πολυμέσων</string>
 	<string name="empty_list_default">Αυτή η λίστα είναι κενή</string>
 	<string name="media_add_popup_title">Προσθήκη στην Βιβλιοθήκη Ππολυμέσων</string>
 	<string name="passcode_turn_on">Ενεργοποιήστε το κλείδωμα PIN</string>
@@ -1121,7 +1105,6 @@ Language: el_GR
 	<string name="app_title">WordPress για Android</string>
 	<string name="tos">Όροι Χρήσης</string>
 	<string name="version">Έκδοση</string>
-	<string name="max_thumbnail_px_size">Προεπιλεγμένο πλάτος εικόνας</string>
 	<string name="image_alignment">Στοίχιση</string>
 	<string name="refresh">Ανανέωση</string>
 	<string name="untitled">Χωρίς τίτλο</string>
@@ -1139,9 +1122,6 @@ Language: el_GR
 	<string name="categories">Κατηγορίες</string>
 	<string name="title">Τίτλος</string>
 	<string name="dlg_deleting_comments">Διαγραφή σχολίων</string>
-	<string name="notification_vibrate">Δόνηση</string>
-	<string name="notification_sound">Ήχος ειδοποιήσης</string>
-	<string name="notification_blink">Να αναβοσβήνει η ένδειξη ενημερώσεων</string>
 	<string name="sdcard_title">Κάρτα SD Είναι Απαραίτητη</string>
 	<string name="media">Πολυμέσα</string>
 	<string name="approve">Έγκριση</string>
