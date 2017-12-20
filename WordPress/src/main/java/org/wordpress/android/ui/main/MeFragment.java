@@ -83,6 +83,7 @@ public class MeFragment extends Fragment {
     private boolean mIsUserVisible;
 
     private boolean mIsUpdatingGravatar;
+    private Uri mGravatarToCropUri;
 
     @Inject Dispatcher mDispatcher;
     @Inject AccountStore mAccountStore;
@@ -224,6 +225,7 @@ public class MeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         refreshAccountDetails();
+        cropGravatarIfNeeded();
     }
 
     @Override
@@ -348,12 +350,6 @@ public class MeFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        // If the fragment is not attached to the activity, we can't start the crop activity or upload the
-        // cropped image.
-        if (!isAdded()) {
-            return;
-        }
-
         switch (requestCode) {
             case RequestCodes.PHOTO_PICKER:
                 if (resultCode == Activity.RESULT_OK && data != null) {
@@ -369,25 +365,11 @@ public class MeFragment extends Fragment {
                                     ? AnalyticsTracker.Stat.ME_GRAVATAR_SHOT_NEW
                                     : AnalyticsTracker.Stat.ME_GRAVATAR_GALLERY_PICKED;
                     AnalyticsTracker.track(stat);
-                    Uri imageUri = Uri.parse(strMediaUri);
-                    if (imageUri != null) {
-                        boolean didGoWell = WPMediaUtils.fetchMediaAndDoNext(getActivity(), imageUri,
-                                new WPMediaUtils.MediaFetchDoNext() {
-                                    @Override
-                                    public void doNext(Uri uri) {
-                                        startCropActivity(uri);
-                                    }
-                                });
-
-                        if (!didGoWell) {
-                            AppLog.e(AppLog.T.UTILS, "Can't download picked or captured image");
-                        }
-                    }
+                    mGravatarToCropUri = Uri.parse(strMediaUri);
                 }
                 break;
             case UCrop.REQUEST_CROP:
                 AnalyticsTracker.track(AnalyticsTracker.Stat.ME_GRAVATAR_CROPPED);
-
                 if (resultCode == Activity.RESULT_OK) {
                     WPMediaUtils.fetchMediaAndDoNext(getActivity(), UCrop.getOutput(data),
                             new WPMediaUtils.MediaFetchDoNext() {
@@ -402,6 +384,22 @@ public class MeFragment extends Fragment {
                     ToastUtils.showToast(getActivity(), R.string.error_cropping_image, Duration.SHORT);
                 }
                 break;
+        }
+    }
+
+    private void cropGravatarIfNeeded() {
+        if (mGravatarToCropUri != null && isAdded()) {
+            boolean didGoWell = WPMediaUtils.fetchMediaAndDoNext(getActivity(), mGravatarToCropUri,
+                    new WPMediaUtils.MediaFetchDoNext() {
+                        @Override
+                        public void doNext(Uri uri) {
+                            startCropActivity(uri);
+                        }
+                    });
+            if (!didGoWell) {
+                AppLog.e(AppLog.T.UTILS, "Can't download picked or captured image");
+            }
+            mGravatarToCropUri = null;
         }
     }
 
