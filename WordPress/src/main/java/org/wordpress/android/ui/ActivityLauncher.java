@@ -18,11 +18,11 @@ import org.wordpress.android.analytics.AnalyticsTracker;
 import org.wordpress.android.fluxc.model.PluginModel;
 import org.wordpress.android.fluxc.model.PostModel;
 import org.wordpress.android.fluxc.model.SiteModel;
+import org.wordpress.android.login.LoginMode;
 import org.wordpress.android.networking.SSLCertsViewActivity;
 import org.wordpress.android.ui.accounts.HelpActivity;
 import org.wordpress.android.ui.accounts.LoginActivity;
 import org.wordpress.android.ui.accounts.LoginEpilogueActivity;
-import org.wordpress.android.ui.accounts.LoginMode;
 import org.wordpress.android.ui.accounts.NewBlogActivity;
 import org.wordpress.android.ui.accounts.SignInActivity;
 import org.wordpress.android.ui.accounts.SiteCreationActivity;
@@ -69,9 +69,11 @@ import java.util.List;
 
 public class ActivityLauncher {
 
-    public static void showMainActivityAndLoginEpilogue(Activity activity, ArrayList<Integer> oldSitesIds) {
+    public static void showMainActivityAndLoginEpilogue(Activity activity,  ArrayList<Integer> oldSitesIds,
+                                                        boolean doLoginUpdate) {
         Intent intent = new Intent(activity, WPMainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra(WPMainActivity.ARG_DO_LOGIN_UPDATE, doLoginUpdate);
         intent.putExtra(WPMainActivity.ARG_SHOW_LOGIN_EPILOGUE, true);
         intent.putIntegerArrayListExtra(WPMainActivity.ARG_OLD_SITES_IDS, oldSitesIds);
         activity.startActivity(intent);
