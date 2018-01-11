@@ -1,6 +1,5 @@
 package org.wordpress.android.ui.prefs;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -566,6 +565,53 @@ public abstract class SiteSettingsInterface {
         mSettings.startOfWeek = startOfWeek;
     }
 
+    public String getDateFormat() {
+        return mSettings.dateFormat;
+    }
+
+    public void setDateFormat(String dateFormat) {
+        mSettings.dateFormat = dateFormat;
+    }
+
+    public String getTimeFormat() {
+        return mSettings.timeFormat;
+    }
+
+    public void setTimeFormat(String timeFormat) {
+        mSettings.timeFormat = timeFormat;
+    }
+
+    public String getTimezone() {
+        return mSettings.timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        mSettings.timezone = timezone;
+    }
+
+    public int getPostsPerPage() {
+        return mSettings.postsPerPage;
+    }
+
+    public void setPostsPerPage(int postsPerPage) {
+        mSettings.postsPerPage = postsPerPage;
+    }
+
+    public boolean getAmpSupported() {
+        return mSettings.ampSupported;
+    }
+
+    public void setAmpSupported(boolean supported) {
+        mSettings.ampSupported = supported;
+    }
+
+    public boolean getAmpEnabled() {
+        return mSettings.ampEnabled;
+    }
+
+    public void setAmpEnabled(boolean enabled) {
+        mSettings.ampEnabled = enabled;
+    }
     public boolean isJetpackMonitorEnabled() {
         return mJpSettings.monitorActive;
     }
